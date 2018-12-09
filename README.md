@@ -4,7 +4,7 @@
 
   - Chạy **Validation.runObserver(Object object,ResultObserver observer)**;
   - **runObserver**: Chạy duyệt tất cả fields -> Mỗi field duyệt tất cả Annotation lấy danh sách này xử lý thông qua **ProcessAnnotation.process(Annotation[] array)** [Sẽ chuyển từ annotation Repeatable sang đơn]
-  - Từ mỗi Annotation lấy ra một **IProcess** từ **BuilderProcess** và chạy **iProcess.process(T annotation, Object object, Field field)**
+  - Từ mỗi Annotation lấy ra một **IProcess** từ **FactoryProcess** và chạy **iProcess.process(T annotation, Object object, Field field)**
   - **process**: Lấy class **AbstractValidation** từ annotation ra, tạo instance và chạy **validation**
   - Lấy kết quả từ **process** tạo **Result** và gửi trờ về thông qua **ResultObserver.update**
 
@@ -18,7 +18,7 @@
     }
   ```
   - **BaseRuleAnnotation**: mỗi một rule annotation phải tạo thêm một class **BaseRuleAnnotations**(Annotation Repeatable) dùng để sử dụng nhìu **BaseRuleAnnotation** cho một field
-  - Các annotation khác nếu có thêm các thuộc tính thì phải tạo **process** và ovverride lại **initValidation** và thêm process đó vô **BuilderProcess**
+  - Các annotation khác nếu có thêm các thuộc tính thì phải tạo **process** và ovverride lại **initValidation** và thêm process đó vô **FactoryProcess**
 ```
     @Override
     protected AbstractValidation initValidation(RegexRuleAnnotation annotation, AbstractValidation abstractValidation) {

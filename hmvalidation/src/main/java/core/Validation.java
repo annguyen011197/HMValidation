@@ -2,13 +2,9 @@ package core;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
 
-import core.annotation.BaseRuleAnnotation;
 import core.annotation.ProcessAnnotation;
-import core.base.AbstractValidation;
-import core.process.BuilderProcess;
+import core.process.FactoryProcess;
 import core.process.IProcess;
 import core.result.Result;
 import core.result.ResultObserver;
@@ -37,7 +33,7 @@ public class Validation {
             Annotation[] annotations = ProcessAnnotation.process(field.getAnnotations());
 
             for (Annotation annotation : annotations) {
-                IProcess iProcess = BuilderProcess.build(annotation);
+                IProcess iProcess = FactoryProcess.build(annotation);
                 boolean isResult = iProcess.process(annotation, object, field);
 
                 if(!isResult){

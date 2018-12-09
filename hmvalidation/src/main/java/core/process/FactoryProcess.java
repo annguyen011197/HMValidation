@@ -6,7 +6,7 @@ import core.annotation.BaseRuleAnnotation;
 import core.annotation.RegexRuleAnnotation;
 import core.base.RegexValidation;
 
-public class BuilderProcess {
+public class FactoryProcess {
 
     static public IProcess build(Annotation annotation){
         if(annotation instanceof BaseRuleAnnotation){
