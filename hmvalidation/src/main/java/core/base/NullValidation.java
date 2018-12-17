@@ -6,5 +6,4 @@ public class NullValidation extends AbstractValidation
     public boolean validation(Object object) {
         return object != null;
     }
-
 }

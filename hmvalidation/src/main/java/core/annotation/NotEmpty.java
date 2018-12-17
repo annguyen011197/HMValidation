@@ -5,9 +5,15 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import core.base.EmptyValidation;
+
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface RegexRuleAnnotation {
-    Class type();
-    String regex() default "";
+public @interface NotEmpty {
+    Class type = EmptyValidation.class;
+    String message() default "";
 }
+
+
+
+

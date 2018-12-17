@@ -19,6 +19,7 @@ public class Validation {
             if(instance == null){
                 instance = new Validation();
                 ProcessAnnotation.register();
+                FactoryProcess.register();
             }
             return instance;
         }

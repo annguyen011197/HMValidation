@@ -1,18 +1,18 @@
 package core.process;
 
-import core.annotation.RegexRuleAnnotation;
+import core.annotation.Regex;
 import core.base.AbstractValidation;
 import core.base.RegexValidation;
 
-public class RegexProcess extends IProcess<RegexRuleAnnotation> {
+public class RegexProcess extends IProcess<Regex> {
 
     @Override
-    public Class getClass(RegexRuleAnnotation annotation) {
-        return annotation.type();
+    public Class getClass(Regex annotation) {
+        return annotation.type;
     }
 
     @Override
-    protected AbstractValidation initValidation(RegexRuleAnnotation annotation, AbstractValidation abstractValidation) {
+    protected AbstractValidation initValidation(Regex annotation, AbstractValidation abstractValidation) {
         RegexValidation regexValidation = (RegexValidation) abstractValidation;
         regexValidation.setRegex( annotation.regex());
         return regexValidation;

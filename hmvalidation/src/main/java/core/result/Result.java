@@ -3,17 +3,17 @@ package core.result;
 public class Result {
     private String name;
     private boolean failed;
-    private String error;
-    public Result( String name, String error) {
+    private String message;
+    public Result( String name, String message) {
         this.failed = true;
         this.name = name;
-        this.error = error;
+        this.message = message;
     }
 
     public Result( String name) {
         this.failed = false;
         this.name = name;
-        this.error = "";
+        this.message = "";
     }
 
     public boolean isFailed() {
@@ -24,7 +24,7 @@ public class Result {
         return name;
     }
 
-    public String getError() {
-        return error;
+    public String getMessage() {
+        return message;
     }
 }

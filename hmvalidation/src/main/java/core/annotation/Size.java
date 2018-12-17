@@ -5,10 +5,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import core.base.SizeValidation;
+
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface RangeDoubleAnnotaion {
-    Class type();
-    double from();
-    double to();
+public @interface Size {
+    Class type = SizeValidation.class;
+    int min() default 0;
+    int max() default Integer.MAX_VALUE;
+    String message() default "";
 }

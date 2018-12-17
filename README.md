@@ -1,5 +1,10 @@
 # HM Validation
 
+# Changelog
+   * 17/12/2018
+        - @Deprecated: ProcessAnnotation
+        - Đổi cấu trúc Annotation
+        - Validation -> FactoryProcess -> IProcess -> AbstractValidation -> Result
 # Workflow
 
   - Chạy **Validation.runObserver(Object object,ResultObserver observer)**;
@@ -12,13 +17,13 @@
   ```
     @Retention(RetentionPolicy.RUNTIME)
     @Target(ElementType.FIELD)
-    @Repeatable(BaseRuleAnnotations.class)
-    public @interface BaseRuleAnnotation {
-        Class type();
+    public @interface NotNull {
+        Class type = NullValidation.class;
+        String message() default "";
     }
   ```
   - **BaseRuleAnnotation**: mỗi một rule annotation phải tạo thêm một class **BaseRuleAnnotations**(Annotation Repeatable) dùng để sử dụng nhìu **BaseRuleAnnotation** cho một field
-  - Các annotation khác nếu có thêm các thuộc tính thì phải tạo **process** và ovverride lại **initValidation** và thêm process đó vô **FactoryProcess**
+  - Các annotation khác nếu có thêm các thuộc tính thì phải tạo **process** và override lại **initValidation** và thêm process đó vô **FactoryProcess**
 ```
     @Override
     protected AbstractValidation initValidation(RegexRuleAnnotation annotation, AbstractValidation abstractValidation) {
@@ -28,6 +33,7 @@
     }
 ```
   - Mỗi một Custom Annotation thêm vô, khi tạo Annotation Repeatable vui lòng sử dụng **ProcessAnnotation.register(Class cl, BuilderAnnotations builderAnnotations)** để đăng kí sử lí, hoặc add trực tiếp vô **register** nếu là base.
+  - FactoryProcess tương tự trên.
 # AbstractValidation
  - Kế thừa **AbstractValidation** để tạo ra một custom validation
  - Các hàm xử lí thêm vô có thể sử dụng trong **Process** của validation đó(ví dụ setRegex phía trên của RegexValidation)   

@@ -6,12 +6,16 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+@Deprecated
+/**
+ * Hiện tại chưa support nhìu annotation giống nhau
+ * */
 public class ProcessAnnotation {
 
     private static HashMap<Class, BuilderAnnotations> hashMap = new HashMap<>();
 
     public static void register(){
-        hashMap.put(BaseRuleAnnotations.class, annotation -> ((BaseRuleAnnotations)annotation).value());
+        //hashMap.put(BaseRuleAnnotations.class, annotation -> ((BaseRuleAnnotations)annotation).value());
     }
 
     public static void register(Class cl, BuilderAnnotations builderAnnotations){

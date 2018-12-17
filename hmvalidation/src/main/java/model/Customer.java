@@ -1,21 +1,19 @@
 package model;
 
-import core.annotation.BaseRuleAnnotation;
-import core.annotation.RegexRuleAnnotation;
-import core.base.EmptyValidation;
-import core.base.NullValidation;
-import core.base.RegexValidation;
+import core.annotation.NotEmpty;
+import core.annotation.NotNull;
+import core.annotation.Regex;
 
 public class Customer
 {
-    //public String name;
-
-    @BaseRuleAnnotation(type = EmptyValidation.class)
-    @RegexRuleAnnotation(type = RegexValidation.class, regex = "1232131232131")
+    public String name;
+    @NotNull
+    @NotEmpty
+    @Regex(regex = "\\d+")
     public String phone;
 
     public Customer(String name, String phone) {
-        //this.name = name;
+        this.name = name;
         this.phone = phone;
     }
 }
