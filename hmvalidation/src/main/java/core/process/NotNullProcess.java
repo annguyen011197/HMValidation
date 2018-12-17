@@ -11,6 +11,11 @@ public class NotNullProcess extends IProcess<NotNull> {
     }
 
     @Override
+    public String getTarget(NotNull annotation) {
+        return annotation.target();
+    }
+
+    @Override
     protected AbstractValidation initValidation(NotNull annotation, AbstractValidation abstractValidation) {
         return abstractValidation;
     }

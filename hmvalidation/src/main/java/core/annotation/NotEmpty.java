@@ -12,6 +12,7 @@ import core.base.EmptyValidation;
 public @interface NotEmpty {
     Class type = EmptyValidation.class;
     String message() default "";
+    String target() default "$";
 }
 
 

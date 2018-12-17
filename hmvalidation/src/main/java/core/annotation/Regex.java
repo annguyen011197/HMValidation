@@ -13,4 +13,5 @@ public @interface Regex {
     Class type = RegexValidation.class;
     String regex() default "";
     String message() default "";
+    String target() default "$";
 }

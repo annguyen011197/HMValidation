@@ -1,10 +1,17 @@
 # HM Validation
 
+#Annotation Support
+   * Size: size of String, Collection, Map
+   * Regex: regex of String
+   * NotNull: not null
+   * NotEmpty: not null or empty (String, Collection, Map)
 # Changelog
    * 17/12/2018
-        - @Deprecated: ProcessAnnotation
-        - Đổi cấu trúc Annotation
-        - Validation -> FactoryProcess -> IProcess -> AbstractValidation -> Result
+        + @Deprecated: ProcessAnnotation
+        + Đổi cấu trúc Annotation
+        + Validation -> FactoryProcess -> IProcess -> AbstractValidation -> Result
+        + [Định hướng] Lấy target từ path "$.var1.var2" (Size(target="$.var1"))
+        + 
 # Workflow
 
   - Chạy **Validation.runObserver(Object object,ResultObserver observer)**;

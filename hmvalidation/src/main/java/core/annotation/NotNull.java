@@ -12,6 +12,7 @@ import core.base.NullValidation;
 public @interface NotNull {
     Class type = NullValidation.class;
     String message() default "";
+    String target() default "$";
 }
 
 

@@ -12,6 +12,11 @@ public class SizeProcess extends IProcess<Size> {
     }
 
     @Override
+    public String getTarget(Size annotation) {
+        return annotation.target();
+    }
+
+    @Override
     protected AbstractValidation initValidation(Size annotation, AbstractValidation abstractValidation) {
         SizeValidation sizeValidation = (SizeValidation) abstractValidation;
         sizeValidation.setMinSize( annotation.min());

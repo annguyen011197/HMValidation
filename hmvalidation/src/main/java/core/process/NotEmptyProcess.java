@@ -11,6 +11,11 @@ public class NotEmptyProcess extends IProcess<NotEmpty> {
     }
 
     @Override
+    public String getTarget(NotEmpty annotation) {
+        return annotation.target();
+    }
+
+    @Override
     protected AbstractValidation initValidation(NotEmpty annotation, AbstractValidation abstractValidation) {
         return abstractValidation;
     }

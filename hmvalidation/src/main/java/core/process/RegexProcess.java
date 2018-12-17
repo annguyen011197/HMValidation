@@ -12,6 +12,11 @@ public class RegexProcess extends IProcess<Regex> {
     }
 
     @Override
+    public String getTarget(Regex annotation) {
+        return annotation.target();
+    }
+
+    @Override
     protected AbstractValidation initValidation(Regex annotation, AbstractValidation abstractValidation) {
         RegexValidation regexValidation = (RegexValidation) abstractValidation;
         regexValidation.setRegex( annotation.regex());

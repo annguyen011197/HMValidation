@@ -8,6 +8,7 @@ import core.base.AbstractValidation;
 public abstract class IProcess<T extends Annotation> {
 
     public abstract Class getClass(T annotation);
+    public abstract String getTarget(T annotation);
     protected abstract AbstractValidation initValidation(T annotation, AbstractValidation abstractValidation);
 
     public boolean process(T annotation, Object object, Field field){
@@ -16,7 +17,7 @@ public abstract class IProcess<T extends Annotation> {
             Object newValidation = ruleClass.getConstructor().newInstance();
             if (newValidation instanceof AbstractValidation) {
                 AbstractValidation abstractValidation = initValidation(annotation, (AbstractValidation) newValidation);
-                return abstractValidation.validation(object, field);
+                return abstractValidation.validation(object, field, getTarget(annotation));
             }
             return false;
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
