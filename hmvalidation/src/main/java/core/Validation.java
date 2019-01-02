@@ -27,7 +27,7 @@ public class Validation {
 
     public void runObserver(Object object,ResultObserver observer) {
         Class aClass = object.getClass();
-        Field[] fields = aClass.getFields();
+        Field[] fields = aClass.getDeclaredFields();
 
         for (Field field : fields) {
             boolean isFailed = false;
@@ -38,7 +38,7 @@ public class Validation {
                 boolean isResult = iProcess.process(annotation, object, field);
 
                 if(!isResult){
-                    observer.update(new Result(field.getName(), iProcess.getClass(annotation).getSimpleName()));
+                    observer.update(new Result(field.getName(), iProcess.getMessage(annotation)));
                     isFailed = true;
                 }
             }

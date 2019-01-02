@@ -8,6 +8,7 @@ import core.base.AbstractValidation;
 public abstract class IProcess<T extends Annotation> {
 
     public abstract Class getClass(T annotation);
+    public abstract String getMessage(T annotation);
     public abstract String getTarget(T annotation);
     protected abstract AbstractValidation initValidation(T annotation, AbstractValidation abstractValidation);
 

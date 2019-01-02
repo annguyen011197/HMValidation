@@ -11,6 +11,11 @@ public class NotEmptyProcess extends IProcess<NotEmpty> {
     }
 
     @Override
+    public String getMessage(NotEmpty annotation) {
+        return annotation.message();
+    }
+
+    @Override
     public String getTarget(NotEmpty annotation) {
         return annotation.target();
     }

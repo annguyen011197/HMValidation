@@ -12,6 +12,11 @@ public class SizeProcess extends IProcess<Size> {
     }
 
     @Override
+    public String getMessage(Size annotation) {
+        return annotation.message();
+    }
+
+    @Override
     public String getTarget(Size annotation) {
         return annotation.target();
     }

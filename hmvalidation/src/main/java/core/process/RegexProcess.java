@@ -12,6 +12,11 @@ public class RegexProcess extends IProcess<Regex> {
     }
 
     @Override
+    public String getMessage(Regex annotation) {
+        return annotation.message();
+    }
+
+    @Override
     public String getTarget(Regex annotation) {
         return annotation.target();
     }

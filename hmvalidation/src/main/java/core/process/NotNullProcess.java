@@ -11,6 +11,11 @@ public class NotNullProcess extends IProcess<NotNull> {
     }
 
     @Override
+    public String getMessage(NotNull annotation) {
+        return annotation.message();
+    }
+
+    @Override
     public String getTarget(NotNull annotation) {
         return annotation.target();
     }
