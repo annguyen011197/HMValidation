@@ -9,7 +9,10 @@ public class Main {
     public static void main(String args[]){
 
         FactoryProcess.register(Email.class, EmailProcess.class);
-
-        Validation.getInstance().runObserver(new Customer(null, "34324"), result -> System.out.println(result.getName() + "->" + result.isFailed()));
+        Customer customer =new Customer(null, "34324");
+        Customer friend = new Customer("Annn","111111");
+        friend.age = 10;
+        customer.friend = friend;
+        Validation.getInstance().runObserver(customer, result -> System.out.println(result.getName() + "->" + result.isFailed()));
     }
 }

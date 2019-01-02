@@ -1,5 +1,7 @@
 package core.base;
 
+import core.helper.FieldFinder;
+
 import java.lang.reflect.Field;
 
 public abstract class AbstractValidation {
@@ -10,7 +12,8 @@ public abstract class AbstractValidation {
                 return validation(result);
             }else{
                 //Find value from path target
-                return false;
+                Object result = FieldFinder.find(target.substring(2),field.get(object));
+                return validation(result);
             }
 
         } catch (IllegalAccessException e) {
