@@ -1,6 +1,6 @@
 # HM Validation
 
-#Annotation Support
+# Annotation Support
    * Size: size of String, Collection, Map
    * Regex: regex of String
    * NotNull: not null
