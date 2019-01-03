@@ -4,6 +4,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
+import core.annotation.*;
 import core.annotation.MaxDouble;
 import core.annotation.MinDouble;
 import core.annotation.NotEmpty;
@@ -22,6 +23,7 @@ public class FactoryProcess {
         hashMap.put(NotNull.class.getSimpleName(), NotNullProcess.class);
         hashMap.put(NotEmpty.class.getSimpleName(), NotEmptyProcess.class);
         hashMap.put(Size.class.getSimpleName(), SizeProcess.class);
+        hashMap.put(Limit.class.getSimpleName(),LimitProcess.class);
         hashMap.put(MaxDouble.class.getSimpleName(), MaxDoubleProcess.class);
         hashMap.put(MinDouble.class.getSimpleName(), MinDoubleProcess.class);
     }

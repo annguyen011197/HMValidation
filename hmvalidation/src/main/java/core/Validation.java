@@ -48,4 +48,8 @@ public class Validation {
             }
         }
     }
+
+    public void runObserver(IValidation object){
+        this.runObserver(object,object.getValidation());
+    }
 }

@@ -1,4 +1,3 @@
-
 import Custom.Email;
 import Custom.EmailProcess;
 import core.Validation;
@@ -12,8 +11,9 @@ public class Main {
         Customer customer =new Customer(null, "34324");
         customer.age = 5;
         Customer friend = new Customer("Annn","111111");
-        friend.age = 10;
+        friend.age = 0;
         customer.friend = friend;
-        Validation.getInstance().runObserver(customer, result -> System.out.println(result.getName() + "->" + result.isFailed()));
+        Validation.getInstance().runObserver(customer);
+
     }
 }
