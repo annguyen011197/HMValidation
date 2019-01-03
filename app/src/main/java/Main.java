@@ -10,6 +10,7 @@ public class Main {
 
         FactoryProcess.register(Email.class, EmailProcess.class);
         Customer customer =new Customer(null, "34324");
+        customer.age = 5;
         Customer friend = new Customer("Annn","111111");
         friend.age = 10;
         customer.friend = friend;

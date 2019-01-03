@@ -1,9 +1,9 @@
 package model;
 
+import core.annotation.MinDouble;
 import core.annotation.NotEmpty;
 import core.annotation.NotNull;
 import core.annotation.Regex;
-import core.annotation.Size;
 
 public class Customer
 {
@@ -14,10 +14,10 @@ public class Customer
     @Regex(regex = "\\d+")
     public String phone;
 
-    @Size(min = 3)
+    @MinDouble(min = 3)
     public int age;
 
-    @Size(min = 2, target = "$.age",message = "Ban cua ban cua ban qua nho")
+    @MinDouble(min = 2, target = "$.age",message = "Ban cua ban cua ban qua nho")
     public Customer friend;
 
     public Customer(String name, String phone) {

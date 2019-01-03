@@ -1,7 +1,5 @@
 package core.helper;
 
-import core.annotation.NotNull;
-
 import java.lang.reflect.Field;
 
 public class FieldFinder {
