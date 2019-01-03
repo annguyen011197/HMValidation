@@ -1,5 +1,6 @@
 package core;
 
+import core.result.ResultCallback;
 import core.result.ResultItemObserver;
 import core.result.ResultObserver;
 
@@ -15,4 +16,8 @@ public abstract class IValidation {
     }
 
     protected abstract void setupValidation(ResultItemObserver observer);
+
+    public void onValidated(String key, ResultCallback callback){
+        resultObserver.putCallback(key,callback);
+    }
 }
