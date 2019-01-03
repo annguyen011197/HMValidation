@@ -12,7 +12,7 @@ public abstract class AbstractValidation {
                 return validation(result);
             }else{
                 //Find value from path target
-                Object result = FieldFinder.find(target.substring(2),field.get(object));
+                Object result = FieldFinder.getInstance().find(target.substring(2),field.get(object));
                 return validation(result);
             }
 
