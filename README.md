@@ -5,9 +5,12 @@
    * Regex: regex of String
    * NotNull: not null
    * NotEmpty: not null or empty (String, Collection, Map)
+   * ContainArrayString: String contain in array string
 # Features
-   * Lấy target từ path "$.var1.var2" (Size(target="$.var1"))
-   * Support Size, Regex, NotNull, NotEmpty
+   * Support path "$.var1.var2" (Size(target="$.var1"))
+   * Support path with array "$.list[0].name"
+   * Support validation in element of list
+   * Support Size, Regex, NotNull, NotEmpty, ContainArrayString
    * Support custom validation
 # Changelog
    * 17/12/2018

@@ -1,16 +1,15 @@
 package model;
 
+import Custom.Email;
 import hmvalidation.core.ValidationImp;
-import hmvalidation.core.annotation.Limit;
-import hmvalidation.core.annotation.NotEmpty;
-import hmvalidation.core.annotation.NotNull;
-import hmvalidation.core.annotation.Regex;
+import hmvalidation.core.annotation.*;
 import hmvalidation.core.result.ResultItemObserver;
 
 import java.util.List;
 
 public class Customer extends ValidationImp {
     @NotNull
+    @ContainArrayString(array = {"1", "2"})
     public String name;
 
     @NotNull

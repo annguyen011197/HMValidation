@@ -20,6 +20,7 @@ public class FactoryProcess {
         hashMap.put(Limit.class.getSimpleName(),LimitProcess.class);
         hashMap.put(MaxDouble.class.getSimpleName(), MaxDoubleProcess.class);
         hashMap.put(MinDouble.class.getSimpleName(), MinDoubleProcess.class);
+        hashMap.put(ContainArrayString.class.getSimpleName(), ContainArrayStringProcess.class);
     }
 
     public static void register(Class annotation, Class cl){

@@ -88,7 +88,7 @@ public class Validation {
                 for (Object item : (List)tryParse){
                     if(item instanceof IValidation){
                         IValidation validation = (IValidation) item;
-                        runObserver(validation, observer, target +"[" + index + "]");
+                        runObserver(validation, observer, target + "[" + index + "]");
                     }
                     index++;
                 }
