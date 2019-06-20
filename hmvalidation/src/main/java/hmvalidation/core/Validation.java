@@ -61,7 +61,7 @@ public class Validation {
             }
 
             //Run validation of field
-            runChild(field, object, observer, target);
+            runChild(field, object, results::addAll, target);
         }
 
         observer.update(results);
