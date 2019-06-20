@@ -1,7 +1,7 @@
 package Custom;
 
-import core.base.AbstractValidation;
-import core.process.IProcess;
+import hmvalidation.core.base.AbstractValidation;
+import hmvalidation.core.process.IProcess;
 
 public class EmailProcess extends IProcess<Email> {
     @Override

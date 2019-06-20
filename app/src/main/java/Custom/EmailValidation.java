@@ -3,7 +3,7 @@ package Custom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import core.base.AbstractValidation;
+import hmvalidation.core.base.AbstractValidation;
 
 public class EmailValidation extends AbstractValidation {
     @Override

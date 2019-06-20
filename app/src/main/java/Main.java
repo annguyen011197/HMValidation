@@ -1,8 +1,7 @@
-
 import Custom.Email;
 import Custom.EmailProcess;
-import core.Validation;
-import core.process.FactoryProcess;
+import hmvalidation.core.Validation;
+import hmvalidation.core.process.FactoryProcess;
 import model.Customer;
 
 public class Main {
@@ -12,8 +11,10 @@ public class Main {
         Customer customer =new Customer(null, "34324");
         customer.age = 5;
         Customer friend = new Customer("Annn","111111");
-        friend.age = 10;
+        friend.age = 0;
         customer.friend = friend;
-        Validation.getInstance().runObserver(customer, result -> System.out.println(result.getName() + "->" + result.isFailed()));
+        customer.onValidated("name",result -> System.out.println("name"));
+        Validation.getInstance().runObserver(customer);
+
     }
 }
