@@ -1,6 +1,6 @@
 package model;
 
-import hmvalidation.core.IValidation;
+import hmvalidation.core.ValidationImp;
 import hmvalidation.core.annotation.Limit;
 import hmvalidation.core.annotation.NotEmpty;
 import hmvalidation.core.annotation.NotNull;
@@ -9,7 +9,7 @@ import hmvalidation.core.result.ResultItemObserver;
 
 import java.util.List;
 
-public class Customer extends IValidation {
+public class Customer extends ValidationImp {
     @NotNull
     public String name;
 
@@ -25,7 +25,7 @@ public class Customer extends IValidation {
     public Customer friend;
 
     @NotNull(target = "$.list[0].name")
-    public List<Customer> list;
+    public List<Car> list;
 
     public Customer(String name, String phone) {
         this.name = name;

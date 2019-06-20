@@ -5,6 +5,10 @@
    * Regex: regex of String
    * NotNull: not null
    * NotEmpty: not null or empty (String, Collection, Map)
+# Features
+   * Lấy target từ path "$.var1.var2" (Size(target="$.var1"))
+   * Support Size, Regex, NotNull, NotEmpty
+   * Support custom validation
 # Changelog
    * 17/12/2018
         + @Deprecated: ProcessAnnotation

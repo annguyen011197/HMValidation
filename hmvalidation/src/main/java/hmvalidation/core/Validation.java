@@ -41,19 +41,17 @@ public class Validation {
             Annotation[] annotations = field.getAnnotations();
 
             for (Annotation annotation : annotations) {
+
                 IProcess<Annotation> iProcess = FactoryProcess.build(annotation);
                 if(iProcess == null) continue;
+
                 boolean isResult = iProcess.process(annotation, object, field);
                 if(!isResult){
-                    String target = iProcess.getTarget(annotation);
-                    if(target == null || target.equals("$")){
-                        target = parent + "." + field.getName();
-                    }
-                    String message = iProcess.getMessage(annotation);
-                    if(message == null || message.equals("")) message = annotation.annotationType().getSimpleName();
-                    results.add(new Result(target, message));
+                    Result result = createResult(iProcess, annotation, parent + "." + field.getName());
+                    results.add(result);
                     isFailed = true;
                 }
+
             }
 
             String target = parent + "." + field.getName();
@@ -62,18 +60,33 @@ public class Validation {
                 results.add(new Result(target));
             }
 
-            try {
-                Object tryParse = field.get(object);
-                if(tryParse instanceof IValidation){
-                    IValidation validation = (IValidation) tryParse;
-                    runObserver(validation, observer, target);
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
+            //Run validation of field
+            runChild(field, object, observer, target);
         }
 
         observer.update(results);
+    }
+
+    private Result createResult(IProcess<Annotation> iProcess, Annotation annotation, String msg){
+        String target = iProcess.getTarget(annotation);
+        if(target == null || target.equals("$")){
+            target = msg;
+        }
+        String message = iProcess.getMessage(annotation);
+        if(message == null || message.equals("")) message = annotation.annotationType().getSimpleName();
+        return new Result(target, message);
+    }
+
+    private void runChild(Field field, Object object, ResultObserver observer, String target){
+        try {
+            Object tryParse = field.get(object);
+            if(tryParse instanceof IValidation){
+                IValidation validation = (IValidation) tryParse;
+                runObserver(validation, observer, target);
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     public void runObserver(IValidation object){
