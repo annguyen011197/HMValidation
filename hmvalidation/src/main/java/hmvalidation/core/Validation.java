@@ -61,4 +61,8 @@ public class Validation {
         long totalTime = endTime - startTime;
         System.out.println(totalTime);
     }
+
+    public void runObserver(IValidation object){
+        this.runObserver(object,object.getValidation());
+    }
 }
