@@ -83,6 +83,15 @@ public class Validation {
             if(tryParse instanceof IValidation){
                 IValidation validation = (IValidation) tryParse;
                 runObserver(validation, observer, target);
+            }else if(tryParse instanceof List){
+                int index = 0;
+                for (Object item : (List)tryParse){
+                    if(item instanceof IValidation){
+                        IValidation validation = (IValidation) item;
+                        runObserver(validation, observer, target +"[" + index + "]");
+                    }
+                    index++;
+                }
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();

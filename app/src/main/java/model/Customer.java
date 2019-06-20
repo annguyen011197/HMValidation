@@ -24,7 +24,6 @@ public class Customer extends ValidationImp {
     @Limit(min = 2, target = "$.age",message = "Ban cua ban cua ban qua nho")
     public Customer friend;
 
-    @NotNull(target = "$.list[0].name")
     public List<Car> list;
 
     public Customer(String name, String phone) {
