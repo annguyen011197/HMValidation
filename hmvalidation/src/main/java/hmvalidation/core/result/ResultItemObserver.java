@@ -16,6 +16,9 @@ public class ResultItemObserver implements ResultObserver {
             ResultCallback callback = resultHashMap.get(key);
             if(callback != null){
                 callback.update(result);
+            }else{
+                ResultCallback callbackDefault = resultHashMap.get("default");
+                callbackDefault.update(result);
             }
         }
     }

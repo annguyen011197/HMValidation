@@ -1,11 +1,10 @@
 package hmvalidation.core.process;
 
+import hmvalidation.core.annotation.*;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
-
-import hmvalidation.core.annotation.*;
-import hmvalidation.core.annotation.*;
 
 
 public class FactoryProcess {
@@ -27,11 +26,11 @@ public class FactoryProcess {
         hashMap.put(annotation.getSimpleName(), cl);
     }
 
-    static public IProcess build(Annotation annotation){
+    static public IProcess<Annotation> build(Annotation annotation){
         Class clazz = hashMap.get(annotation.annotationType().getSimpleName());
         if(clazz == null) return null;
         try {
-            return (IProcess) clazz.getConstructor().newInstance();
+            return (IProcess<Annotation>) clazz.getConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }

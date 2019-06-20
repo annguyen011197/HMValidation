@@ -1,15 +1,15 @@
 package hmvalidation.core;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-
 import hmvalidation.core.annotation.ProcessAnnotation;
 import hmvalidation.core.process.FactoryProcess;
 import hmvalidation.core.process.IProcess;
 import hmvalidation.core.result.Result;
 import hmvalidation.core.result.ResultObserver;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Validation {
     private static Validation instance;
@@ -27,7 +27,11 @@ public class Validation {
         }
     }
 
-    public void runObserver(Object object,ResultObserver observer) {
+    public void runObserver(Object object,ResultObserver observer){
+        runObserver(object, observer, "$");
+    }
+
+    private void runObserver(Object object,ResultObserver observer, String parent) {
         Class aClass = object.getClass();
         Field[] fields = aClass.getDeclaredFields();
         List<Result> results = new ArrayList<>();
@@ -37,17 +41,35 @@ public class Validation {
             Annotation[] annotations = field.getAnnotations();
 
             for (Annotation annotation : annotations) {
-                IProcess iProcess = FactoryProcess.build(annotation);
+                IProcess<Annotation> iProcess = FactoryProcess.build(annotation);
                 if(iProcess == null) continue;
                 boolean isResult = iProcess.process(annotation, object, field);
                 if(!isResult){
-                    results.add(new Result(field.getName(), iProcess.getMessage(annotation)));
+                    String target = iProcess.getTarget(annotation);
+                    if(target == null || target.equals("$")){
+                        target = parent + "." + field.getName();
+                    }
+                    String message = iProcess.getMessage(annotation);
+                    if(message == null || message.equals("")) message = annotation.annotationType().getSimpleName();
+                    results.add(new Result(target, message));
                     isFailed = true;
                 }
             }
 
+            String target = parent + "." + field.getName();
+
             if(!isFailed){
-                results.add(new Result(field.getName()));
+                results.add(new Result(target));
+            }
+
+            try {
+                Object tryParse = field.get(object);
+                if(tryParse instanceof IValidation){
+                    IValidation validation = (IValidation) tryParse;
+                    runObserver(validation, observer, target);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
             }
         }
 
